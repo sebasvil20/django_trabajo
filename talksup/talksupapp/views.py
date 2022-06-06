@@ -5,3 +5,6 @@ from django.http import HttpResponse
 # Create your views here.
 def index(request):
     return HttpResponse("Hello, world. You're at the talksupapp index.")
+
+def login(request):
+    return render(request, "talksupapp/login.html")

@@ -1,19 +1,23 @@
-{% extends 'talksupapp/base.html' %} {% block content %}
-
+{% extends 'talksupapp/base.html' %} {% block content %} {% load static %}
 <div class="login-super">
   <div class="login-form">
+    <img class="logo-img" src="{% static 'talksupapp/logo_dark.png' %}" />
     <form action="{% url 'login' %}" type="submit" method="post">
       {% csrf_token %}
       <h1>Login</h1>
+      {% if mensaje %}
+      <h3 class="error">{{ mensaje }}</h3>
+      {% endif %}
       <div class="content">
         <div class="input-field">
-          <input type="email" placeholder="Email" autocomplete="nope" />
+          <input type="text" placeholder="Username" name="username" />
         </div>
         <div class="input-field">
           <input
             type="password"
             placeholder="Password"
             autocomplete="new-password"
+            name="password"
           />
         </div>
       </div>

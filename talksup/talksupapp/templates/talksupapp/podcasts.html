@@ -1,0 +1,28 @@
+{% extends 'talksupapp/base.html' %} {% block content %}
+<table class="styled-table">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Nombre</th>
+      <th>Descripcion</th>
+      <th>Cover img</th>
+      <th>Episodios</th>
+      <th>Fecha lanzamiento</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for obj in podcasts %}
+    <tr>
+      <td>{{ obj.id }}</td>
+      <td>{{ obj.name }}</td>
+      <td>{{ obj.description }}</td>
+      <td>{{ obj.cover_pic_url }}</td>
+      <td>{{ obj.total_episodes }}</td>
+      <td>{{ obj.release_date }}</td>
+      <td><a href=""> ❌ </a> &nbsp; &nbsp;<a href=""> 🖊️ </a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

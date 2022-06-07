@@ -6,7 +6,10 @@ from django.http import HttpResponse
 from .models import Podcast
 # Create your views here.
 def index(request):
-    return HttpResponse("Hello, world. You're at the talksupapp index.")
+    if request.user.is_authenticated:
+        return redirect('dashboard')
+    else:
+        return redirect('login')
 
 def login(request):
     if request.user.is_authenticated:

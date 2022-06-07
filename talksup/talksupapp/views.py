@@ -34,3 +34,46 @@ def dashboard(request):
 def podcasts(request):
     allObjects = Podcast.objects.all()
     return render(request, 'talksupapp/podcasts.html', {"podcasts": allObjects})
+
+@login_required(login_url='login')
+def newPodcast(request):
+    if request.method == 'POST':
+        name = request.POST['podName']
+        description = request.POST['podDescription']
+        urlCover = request.POST['podURL']
+        epQuantity = request.POST['podEpisodes']
+        rDate = request.POST['podReleaseDate']
+        try:
+            podcast = Podcast.objects.create(
+                name= name,
+                description = description,
+                cover_pic_url = urlCover,
+                total_episodes = epQuantity,
+                release_date = rDate
+            )
+            podcast.save()
+        except:
+            return redirect('newPodcast')
+        return redirect('podcasts')
+    return render(request, 'talksupapp/podcastForm.html')
+
+
+@login_required(login_url='login')
+def updatePodcast(request, id):
+    podcast = Podcast.objects.get(id=id)
+    if request.method == 'POST':
+        name = request.POST['podName']
+        description = request.POST['podDescription']
+        urlCover = request.POST['podURL']
+        epQuantity = request.POST['podEpisodes']
+        try:
+            podcast.name = name
+            podcast.description = description
+            podcast.cover_pic_url = urlCover
+            podcast.total_episodes = epQuantity
+            podcast.release_date = podcast.release_date
+            podcast.save()
+        except:
+            return redirect('updatePodcast', id)
+        return redirect('podcasts')
+    return render(request, 'talksupapp/editForm.html', {"podcast": podcast})

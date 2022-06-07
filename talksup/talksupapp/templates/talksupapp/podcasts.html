@@ -20,9 +20,20 @@
       <td>{{ obj.cover_pic_url }}</td>
       <td>{{ obj.total_episodes }}</td>
       <td>{{ obj.release_date }}</td>
-      <td><a href=""> ❌ </a> &nbsp; &nbsp;<a href=""> 🖊️ </a></td>
+      <td>
+        <a href=""> ❌ </a> &nbsp; &nbsp;<a
+          href="{%  url 'updatePodcast' obj.id  %}"
+        >
+          🖊️
+        </a>
+      </td>
     </tr>
     {% endfor %}
+    <tr>
+      <td colspan="100%" align="center">
+        <a href="{% url 'newPodcast' %}"> Agregar nuevo ➕ </a>
+      </td>
+    </tr>
   </tbody>
 </table>
 {% endblock %}

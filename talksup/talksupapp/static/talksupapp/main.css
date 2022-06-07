@@ -176,6 +176,7 @@ nav ul li a:hover {
   font-size: 0.9em;
   font-family: sans-serif;
   min-width: 400px;
+  width: 60%;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 
@@ -191,6 +192,7 @@ nav ul li a:hover {
 }
 
 .styled-table tbody tr {
+  overflow: scroll;
   border-bottom: 1px solid #dddddd;
 }
 

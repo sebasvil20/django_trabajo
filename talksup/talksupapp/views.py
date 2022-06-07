@@ -53,7 +53,7 @@ def newPodcast(request):
             )
             podcast.save()
         except:
-            return redirect('newPodcast')
+            return render(request, 'talksupapp/podcastForm.html', {"mensaje": "No se pudo crear, intentelo de nuevo"})
         return redirect('podcasts')
     return render(request, 'talksupapp/podcastForm.html')
 
@@ -74,6 +74,17 @@ def updatePodcast(request, id):
             podcast.release_date = podcast.release_date
             podcast.save()
         except:
-            return redirect('updatePodcast', id)
+            return render(request, 'talksupapp/editForm.html', {"podcast": podcast, "mensaje": "No se pudo actualizar, intentelo de nuevo"})
         return redirect('podcasts')
     return render(request, 'talksupapp/editForm.html', {"podcast": podcast})
+
+
+
+@login_required(login_url='login')
+def deletePodcast(request, id):
+    try:
+        Podcast.objects.get(id=id).delete()
+    except:
+        return redirect('podcasts')
+
+    return redirect('podcasts')

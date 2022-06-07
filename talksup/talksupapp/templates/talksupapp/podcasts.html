@@ -15,16 +15,20 @@
     {% for obj in podcasts %}
     <tr>
       <td>{{ obj.id }}</td>
-      <td>{{ obj.name }}</td>
-      <td>{{ obj.description }}</td>
-      <td>{{ obj.cover_pic_url }}</td>
+      <td style="word-wrap: break-word; max-width: 400px">{{ obj.name }}</td>
+      <td style="word-wrap: break-word; max-width: 400px">
+        {{ obj.description }}
+      </td>
+      <td style="word-wrap: break-word; max-width: 400px">
+        {{ obj.cover_pic_url }}
+      </td>
       <td>{{ obj.total_episodes }}</td>
       <td>{{ obj.release_date }}</td>
       <td>
-        <a href=""> ❌ </a> &nbsp; &nbsp;<a
-          href="{%  url 'updatePodcast' obj.id  %}"
+        <a href="{%  url 'updatePodcast' obj.id  %}"> 🖊️ </a> &nbsp; &nbsp;<a
+          href="{%  url 'deletePodcast' obj.id  %}"
         >
-          🖊️
+          ❌
         </a>
       </td>
     </tr>
